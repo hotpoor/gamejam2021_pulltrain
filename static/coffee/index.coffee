@@ -35,6 +35,7 @@ $ ->
         console.log "keyAction",keyAction[evt.key]
         current_key = keyAction[evt.key]
         current_action = current_key
+
         ax = 0
         ay = 0
         step = parseInt($(".game_step").val())
@@ -49,6 +50,9 @@ $ ->
         y = parseInt $(".game_train[data-train-id=#{current_train_id}]").css("top")
         console.log x,y,step
         console.log current_action
+        if current_action in ["down","up","left","right"]
+            $(".game_train").css
+                "background-image":"url(static/img/train_#{current_action}.png)"
         if current_action in ["down"]
             ax = 0
             ay = ay + step

@@ -59,6 +59,11 @@
       y = parseInt($(".game_train[data-train-id=" + current_train_id + "]").css("top"));
       console.log(x, y, step);
       console.log(current_action);
+      if (current_action === "down" || current_action === "up" || current_action === "left" || current_action === "right") {
+        $(".game_train").css({
+          "background-image": "url(static/img/train_" + current_action + ".png)"
+        });
+      }
       if (current_action === "down") {
         ax = 0;
         ay = ay + step;
