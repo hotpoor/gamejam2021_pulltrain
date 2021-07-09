@@ -81,4 +81,4 @@ $ ->
             top:"#{y}px"
     setInterval ()->
             render()
-        ,100
+        ,20

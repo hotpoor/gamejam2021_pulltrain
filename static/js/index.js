@@ -99,7 +99,7 @@
     };
     return setInterval(function() {
       return render();
-    }, 100);
+    }, 20);
   });
 
 }).call(this);
