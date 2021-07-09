@@ -16,7 +16,7 @@
   };
 
   $(function() {
-    var ax, ay, current_action, current_key, current_train_id, step;
+    var ax, ay, current_action, current_key, current_train_id, setp_base, step;
     current_train_id = 0;
     console.log("this is pull train");
     root.game_init = function() {
@@ -35,6 +35,7 @@
     };
     current_key = null;
     current_action = "down";
+    setp_base = $(".game_step").val();
     step = 0;
     ax = 0;
     ay = 0;
@@ -45,7 +46,8 @@
       current_action = current_key;
       ax = 0;
       ay = 0;
-      return step = 1;
+      step = parseInt($(".game_step").val());
+      return setp_base = parseInt($(".game_step").val());
     });
     $(window).on("keyup", function(evt) {
       return step = 0;
@@ -60,15 +62,27 @@
       if (current_action === "down") {
         ax = 0;
         ay = ay + step;
+        if (ay === 0) {
+          ay = 1 * setp_base;
+        }
       } else if (current_action === "right") {
         ax = ax + step;
         ay = 0;
+        if (ax === 0) {
+          ax = 1 * setp_base;
+        }
       } else if (current_action === "up") {
         ax = 0;
         ay = ay - step;
+        if (ay === 0) {
+          ay = -1 * setp_base;
+        }
       } else if (current_action === "left") {
         ax = ax - step;
         ay = 0;
+        if (ax === 0) {
+          ax = -1 * setp_base;
+        }
       }
       x = x + ax;
       y = y + ay;
@@ -80,7 +94,7 @@
     };
     return setInterval(function() {
       return render();
-    }, 250);
+    }, 100);
   });
 
 }).call(this);

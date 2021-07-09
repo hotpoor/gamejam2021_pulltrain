@@ -26,6 +26,7 @@ $ ->
     
     current_key = null
     current_action = "down"
+    setp_base = $(".game_step").val()
     step = 0
     ax = 0
     ay = 0
@@ -36,7 +37,8 @@ $ ->
         current_action = current_key
         ax = 0
         ay = 0
-        step = 1
+        step = parseInt($(".game_step").val())
+        setp_base = parseInt($(".game_step").val())
     $(window).on "keyup",(evt)->
         step = 0
 
@@ -50,15 +52,23 @@ $ ->
         if current_action in ["down"]
             ax = 0
             ay = ay + step
+            if ay == 0
+                ay = 1 * setp_base
         else if current_action in ["right"]
             ax = ax + step
             ay = 0
+            if ax == 0
+                ax = 1 * setp_base
         else if current_action in ["up"]
             ax = 0
             ay = ay - step
+            if ay == 0
+                ay = -1 * setp_base
         else if current_action in ["left"]
             ax = ax - step
             ay = 0
+            if ax == 0
+                ax = -1 * setp_base
         x = x + ax
         y = y + ay
         console.log x,y,ax,ay
@@ -67,4 +77,4 @@ $ ->
             top:"#{y}px"
     setInterval ()->
             render()
-        ,250
+        ,100
